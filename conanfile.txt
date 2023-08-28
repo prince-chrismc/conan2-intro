@@ -1,0 +1,9 @@
+[requires]
+spdlog/[>=1.10]
+
+[generators]
+CMakeToolchain
+CMakeDeps
+
+[layout]
+cmake_layout
