@@ -6,7 +6,8 @@ jobs:
   by-hand:
     runs-on: ubuntu-22.04
     steps:
-      - uses: lukka/get-cmake@v3.27.4
+      - name: install cmake
+        uses: lukka/get-cmake@v3.27.4
       - name: install sdplog
         run: |
           git clone https://github.com/gabime/spdlog.git
@@ -18,7 +19,7 @@ jobs:
         run: |
           mkdir build && cd build
           cmake .. && make -j
-      - name: Run app
+      - name: run app
         run: ./build/app
 
   with-conan:
@@ -28,14 +29,15 @@ jobs:
       run: |
         pip install conan==2.0.9
         conan profile detect
-    - uses: lukka/get-cmake@v3.27.4
-    - name: install sdplog
-      run: conan install .
+    - name: install cmake
+      uses: lukka/get-cmake@v3.27.4
 
     - uses: actions/checkout@v3
+    - name: install sdplog
+      run: conan install .
     - name: build app
       run: |
         cmake --preset conan-release
         cmake --build --preset conan-release
-    - name: Run app
+    - name: run app
       run: ./build/Release/app
