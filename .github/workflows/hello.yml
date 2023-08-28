@@ -26,8 +26,7 @@ jobs:
     steps:
     - name: install conan
       run: |
-        wget https://github.com/conan-io/conan/releases/download/2.0.9/conan-linux-64.tar.gz
-        tar -xvf conan-linux-64.tar.gz
+        pip install conan==2.0.9
         conan profile detect
     - uses: lukka/get-cmake@v3.27.4
     - name: install sdplog
