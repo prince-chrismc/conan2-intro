@@ -1,0 +1,42 @@
+name: Hello World
+
+on: push
+
+jobs:
+  by-hand:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: lukka/get-cmake@v3.27.4
+      - name: install sdplog
+        run: |
+          git clone https://github.com/gabime/spdlog.git
+          cd spdlog && mkdir build && cd build
+          cmake .. && make -j && sudo make install
+
+      - uses: actions/checkout@v3
+      - name: build app
+        run: |
+          mkdir build && cd build
+          cmake .. && make -j
+      - name: Run app
+        run: ./app
+
+  with_conan:
+    runs-on: ubuntu-22.04
+    steps:
+    - name: install conan
+      run: |
+        wget https://github.com/conan-io/conan/releases/v2.0.9/download/conan-linux-64.tar.gz
+        tar -xvf conan-linux-64.tar.gz
+        conan profile detect
+    - uses: lukka/get-cmake@v3.27.4
+    - name: install sdplog
+      run: conan install .
+
+    - uses: actions/checkout@v3
+    - name: build app
+      run: |
+        cmake --preset conan-release
+        cmake --build --preset conan-release
+    - name: Run app
+      run: ./build/Release/app
