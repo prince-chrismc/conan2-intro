@@ -9,3 +9,10 @@ Sample Project for Presenting
 1. `conan install`
 2. `cmake --preset conan-release`
 3. `cmake --build --preset conan-release`
+
+### Debugging our Code
+
+1. `conan install . -s "&:build_type=Debug"`
+2. `cmake --preset conan-debug`
+3. `cmake --build --preset conan-debug`
+4. `./build/Debug/app`
