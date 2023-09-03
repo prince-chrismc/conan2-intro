@@ -16,8 +16,8 @@ jobs:
       uses: lukka/get-cmake@v3.27.4
 
     - uses: actions/checkout@v3
-    - name: install sdplog
-      run: conan install .
+    - name: install dependencies
+      run: conan install . -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=yes
     - name: build app
       run: |
         cmake --preset conan-release
