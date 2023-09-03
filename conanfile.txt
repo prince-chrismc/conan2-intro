@@ -1,11 +1,14 @@
 [requires]
-spdlog/[>=1.10]
+spdlog/[>=1.10, <2]
 
 # Particle Deps
 tinycthread/cci.20161001
 linmath.h/cci.20220619
 glad/0.1.36
 glfw/3.3.8
+
+[test_requires]
+gtest/[~1]
 
 [generators]
 CMakeToolchain

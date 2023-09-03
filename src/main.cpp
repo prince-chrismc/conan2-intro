@@ -39,10 +39,11 @@
  #define _USE_MATH_DEFINES
 #endif
 
+#include "particles.hpp"
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "particles.hpp"
 #include <time.h>
 
 #include <tinycthread.h>

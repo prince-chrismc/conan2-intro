@@ -8,8 +8,25 @@ find_package(glad REQUIRED CONFIG)
 find_package(linmath.h REQUIRED CONFIG)
 find_package(tinycthread REQUIRED CONFIG)
 
-add_executable(app src/main.cpp src/particles.hpp)
+add_library(particles INTERFACE src/particles.hpp)
+target_include_directories(particles INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/src)
+# Because we are header-only we need to explicity tell CMake
+set_target_properties(particles PROPERTIES LINKER_LANGUAGE CXX)
 
+add_executable(app src/main.cpp)
 target_compile_features(app PRIVATE c_std_11)
-target_link_libraries(app PRIVATE spdlog::spdlog glfw glad::glad
+target_link_libraries(app PRIVATE particles spdlog::spdlog glfw glad::glad
                                   linmath.h::linmath.h tinycthread::tinycthread)
+
+include(CTest)
+if(BUILD_TESTING)
+
+  enable_testing()
+  include(GoogleTest)
+
+  find_package(GTest REQUIRED CONFIG)
+  add_executable(particle-tests tests/particles.cpp)
+  target_link_libraries(particle-tests PRIVATE particles GTest::gtest
+                                               GTest::gtest_main)
+  gtest_add_tests(TARGET particle-tests)
+endif()
