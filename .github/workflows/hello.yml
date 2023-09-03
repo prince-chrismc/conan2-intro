@@ -5,25 +5,6 @@ on:
   - pull_request
 
 jobs:
-  by-hand:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: install cmake
-        uses: lukka/get-cmake@v3.27.4
-      - name: install sdplog
-        run: |
-          git clone https://github.com/gabime/spdlog.git
-          cd spdlog && mkdir build && cd build
-          cmake .. && make -j && sudo make install
-
-      - uses: actions/checkout@v3
-      - name: build app
-        run: |
-          mkdir build && cd build
-          cmake .. && make -j
-      - name: run app
-        run: ./build/app
-
   with-conan:
     runs-on: ubuntu-22.04
     steps:
@@ -35,11 +16,12 @@ jobs:
       uses: lukka/get-cmake@v3.27.4
 
     - uses: actions/checkout@v3
-    - name: install sdplog
-      run: conan install .
+    - name: install dependencies
+      run: conan install . -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=yes
     - name: build app
       run: |
         cmake --preset conan-release
         cmake --build --preset conan-release
     - name: run app
-      run: ./build/Release/app
+      #run: ./build/Release/app # Because we are opening a window this does not work!
+      run: echo 'find a better way to test our application works!'

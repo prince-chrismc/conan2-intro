@@ -1,6 +1,12 @@
 [requires]
 spdlog/[>=1.10]
 
+# Particle Deps
+tinycthread/cci.20161001
+linmath.h/cci.20220619
+glad/0.1.36
+glfw/3.3.8
+
 [generators]
 CMakeToolchain
 CMakeDeps
