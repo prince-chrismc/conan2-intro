@@ -1,0 +1,15 @@
+{
+    "version": "0.5",
+    "requires": [
+        "tinycthread/cci.20161001#9274b450c39882ec86b22496b52c2614%1681337418.988",
+        "spdlog/1.10.0#85feeed0d788975a061cb71245e5c945",
+        "opengl/system#b29589c04d6df84c110d6acb066ab653%1681425065.802",
+        "linmath.h/cci.20220619#16b7d58f3a712090cf5ed9488b59a17e%1670104685.712",
+        "gtest/1.14.0#4372c5aed2b4018ed9f9da3e218d18b3%1691143988.385",
+        "glfw/3.3.8#545c12c3dd621f4cb64d5d8c5f469293%1683482625.927",
+        "glad/0.1.36#c926453afdd9d5f72cc4ee6a8fff7d73%1678839632.23",
+        "fmt/8.1.1#88ec6c29b090a4d25c1230b0959ab680"
+    ],
+    "build_requires": [],
+    "python_requires": []
+}

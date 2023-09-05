@@ -24,3 +24,10 @@ Sample Project for Presenting
 1. `conan install`
 2. `cmake --preset conan-release`
 3. `ctest --preset conan-release --output-junit results.xml`
+
+### Locking down our dependency graph
+
+> **Note**: This a one time operation that a developer only needs to run once but could be useful to update packages.
+
+1. `conan lock create`
+2. `conan install`
