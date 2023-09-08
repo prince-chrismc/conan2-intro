@@ -22,6 +22,5 @@ jobs:
       run: |
         cmake --preset conan-release
         cmake --build --preset conan-release
-    - name: run app
-      #run: ./build/Release/app # Because we are opening a window this does not work!
-      run: echo 'find a better way to test our application works!'
+    - name: run tests
+      run: ctest --preset conan-release --output-junit results.xml

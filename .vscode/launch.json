@@ -5,17 +5,30 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "C++ Launch",
+            "name": "Launch app",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/Debug/app",
             "cwd": "${workspaceFolder}",
             "linux": {
-              "MIMode": "gdb",
+                "MIMode": "gdb",
             },
             "osx": {
-              "MIMode": "lldb"
+                "MIMode": "lldb"
             },
-          }
+        },
+        {
+            "name": "Launch particle test",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/Debug/particle-tests",
+            "cwd": "${workspaceFolder}",
+            "linux": {
+                "MIMode": "gdb",
+            },
+            "osx": {
+                "MIMode": "lldb"
+            },
+        }
     ]
 }
