@@ -8,7 +8,7 @@ glad/0.1.36
 glfw/3.3.8
 
 [test_requires]
-gtest/[^1.14]
+gtest/[>=1.14 <2]
 
 [generators]
 CMakeToolchain
