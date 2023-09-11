@@ -5,6 +5,7 @@ Sample Project for Presenting
 - Step 1: [Creating a basic "Hello World" app](https://github.com/prince-chrismc/conan2-intro/tree/spdlog-hello-word)
 - Step 2: [Adding application logic and dependencies](https://github.com/prince-chrismc/conan2-intro/tree/spdlog-hello-word)
 - Step 3: [Debugging and Testing our app](https://github.com/prince-chrismc/conan2-intro/tree/testing-and-lockfiles)
+- Step 4: [Creating a package](https://github.com/prince-chrismc/conan2-intro/tree/create-package)
 
 ## Instructions
 
@@ -31,3 +32,12 @@ Sample Project for Presenting
 
 1. `conan lock create`
 2. `conan install`
+
+### Updating the dependencies
+
+1. `conan lock create --lockfile="" --update`
+2. `conan install`
+
+### Building the Package
+
+1. `conan create`
