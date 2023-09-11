@@ -28,3 +28,8 @@ if(BUILD_TESTING)
                                                GTest::gtest_main)
   gtest_add_tests(TARGET particle-tests)
 endif()
+
+install(
+  TARGETS app
+  DESTINATION "."
+  RUNTIME DESTINATION bin)
