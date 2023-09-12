@@ -24,6 +24,9 @@ jobs:
         cmake --build --preset conan-release
     - name: run tests
       run: ctest --preset conan-release --output-junit results.xml
+    - name: save test results
+      run: cat build/Release/results.xml
+
   conan-ci:
     runs-on: ubuntu-22.04
     steps:
@@ -36,4 +39,6 @@ jobs:
 
     - uses: actions/checkout@v3
     - name: crete pacakage
-      run: conan create . -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=yes
+      run: conan create . -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=yes -f json > create.json
+    - name: save test results
+      run: cat $(jq -r '.graph.nodes."1".build_folder' create.json)/results.xml
