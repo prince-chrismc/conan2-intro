@@ -24,3 +24,21 @@ jobs:
         cmake --build --preset conan-release
     - name: run tests
       run: ctest --preset conan-release --output-junit results.xml
+    - name: save test results
+      run: cat build/Release/results.xml
+
+  conan-ci:
+    runs-on: ubuntu-22.04
+    steps:
+    - name: install conan
+      run: |
+        pip install conan==2.0.9
+        conan profile detect
+    - name: install cmake
+      uses: lukka/get-cmake@v3.27.4
+
+    - uses: actions/checkout@v3
+    - name: crete pacakage
+      run: conan create . -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=yes -f json > create.json
+    - name: save test results
+      run: cat $(jq -r '.graph.nodes."1".build_folder' create.json)/results.xml
